@@ -1,22 +1,62 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+#define NUM_ESTADOS 8
+#define NUM_CIDADES 4
+
+typedef struct {
+    char codigo[4];
+    int populacao;
+    float area;
+    double pib;
+    int pontos_turisticos;
+} Cidade;
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+    Cidade cidades[NUM_ESTADOS][NUM_CIDADES];
+    char estadoLetra;
+
+    printf("Cadastro das cartas de cidades:\n\n");
+
+    for (int i = 0; i < NUM_ESTADOS; i++) {
+        estadoLetra = 'A' +i;
+
+        for (int j = 0; j < NUM_CIDADES; i++) {
+
+            snprintf(cidades[i][j].codigo, sizeof(cidades[i][j].codigo), "%c%02d", estadoLetra, j + 1);
+
+            printf("Cadastro para a cidade %s:\n", cidades[i][j].codigo);
+
+            printf("População: ");
+            scanf("%d", &cidades[i][j].populacao);
+
+            printf("Área (em km²): ");
+            scanf("%f", &cidades[i][j].area);
+
+            printf("PIB (em milhões): ");
+            scanf("%f", &cidades[i][j].pib);
+
+            printf("Número de pontos turísticos: ");
+            scanf("%d", &cidades[i][j].pontos_turisticos);
+
+            printf("\n");
+        }
     
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+}
+
+printf("\n--- Dados das Cartas Cadastradas ---\n\n");
+
+for (int i = 0; i < NUM_ESTADOS; i++) {
+    for (int j = 0; j < NUM_CIDADES; j++) {
+        printf("Cidade %s:\n", cidades[i][j].codigo);
+        printf("População: %d habitantes\n", cidades[i][j].populacao);
+        printf("Área: %.2f km²\n", cidades[i][j].area);
+        printf("PIB: %.2f fmilhões\n");
+        printf("Pontos turísticos: %d\n", cidades[i][j].pontos_turisticos);
+        printf("----------------------------\n");
+    }
+}
+
 
     return 0;
+
 }
